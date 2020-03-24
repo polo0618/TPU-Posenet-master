@@ -121,8 +121,11 @@ if __name__ == '__main__':
         tinf = time.perf_counter()
         res, inference_time = engine.DetectPosesInImage(prepimg)
 
+        
+        print("res: ")
         print(res)
-        print("inference_time: " +inference_time)
+        print("inference_time: ")
+        print(inference_time)
 
         res
         inference_time

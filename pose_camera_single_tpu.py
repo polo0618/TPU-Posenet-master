@@ -121,6 +121,12 @@ if __name__ == '__main__':
         tinf = time.perf_counter()
         res, inference_time = engine.DetectPosesInImage(prepimg)
 
+        print("res: "res)
+        print("inference_time: "inference_time)
+
+        res
+        inference_time
+
         if res:
             detectframecount += 1
             imdraw = overlay_on_image(color_image, res, model_width, model_height)

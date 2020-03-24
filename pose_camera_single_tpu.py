@@ -85,10 +85,10 @@ if __name__ == '__main__':
     vidfps    = args.vidfps
     videofile = args.videofile
 
-    camera_width  = 320
-    camera_height = 240
-    model_width   = 640
-    model_height  = 480
+    camera_width  = 640
+    camera_height = 480
+    model_width   = 1280
+    model_height  = 960
 
     devices = edgetpu_utils.ListEdgeTpuPaths(edgetpu_utils.EDGE_TPU_STATE_UNASSIGNED)
     engine = PoseEngine(model, devices[0])
@@ -145,4 +145,3 @@ if __name__ == '__main__':
         elapsedTime = t2-t1
         time1 += 1/elapsedTime
         time2 += elapsedTime
-

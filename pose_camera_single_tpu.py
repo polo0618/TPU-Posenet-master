@@ -6,6 +6,7 @@ from PIL import Image
 from time import sleep
 from edgetpu.basic import edgetpu_utils
 from pose_engine import PoseEngine
+import pickle
 
 lastresults = None
 processes = []
@@ -17,6 +18,7 @@ framecount = 0
 detectframecount = 0
 time1 = 0
 time2 = 0
+
 
 EDGES = (
     ('nose', 'left eye'),
@@ -85,10 +87,10 @@ if __name__ == '__main__':
     vidfps    = args.vidfps
     videofile = args.videofile
 
-    camera_width  = 640
-    camera_height = 480
-    model_width   = 1280
-    model_height  = 960
+    camera_width  = 320
+    camera_height = 240
+    model_width   = 640
+    model_height  = 480
 
     devices = edgetpu_utils.ListEdgeTpuPaths(edgetpu_utils.EDGE_TPU_STATE_UNASSIGNED)
     engine = PoseEngine(model, devices[0])
@@ -106,7 +108,11 @@ if __name__ == '__main__':
         window_name = "Movie File"
 
     cv2.namedWindow(window_name, cv2.WINDOW_AUTOSIZE)
-
+    
+    
+    file = open('data.txt', 'w')
+    file.close()
+    
     while True:
         t1 = time.perf_counter()
 
@@ -121,22 +127,45 @@ if __name__ == '__main__':
         tinf = time.perf_counter()
         res, inference_time = engine.DetectPosesInImage(prepimg)
 
-        
-        print("res: ")
-        print(res)
-        print("inference_time: ")
-        print(inference_time)
 
-        res
-        inference_time
+
+
+
+
 
         if res:
+            #print(1) detected
+            
+            
+            for i in res:
+                rows = []
+                #print('type')
+                #print(type(i.keypoints)) #<class 'dict'>
+                for j in i.keypoints:
+                    print(i.keypoints[j].getListofkyx())
+                    rows.append(i.keypoints[j].getListofkyx())
+                    #print(type(i.keypoints[j].getListofkyx()))
+                #print('shape')
+                #print(len(i.keypoints)) #17
+                #columns.append(rows)
+            with open('data.txt', 'ab') as fp:
+                pickle.dump(rows, fp)
+                
+            
+            
             detectframecount += 1
             imdraw = overlay_on_image(color_image, res, model_width, model_height)
         else:
+            #print(0) not detected
             imdraw = color_image
 
         cv2.imshow(window_name, imdraw)
+        
+
+        #print(len(columns))
+        #with open('data.txt', 'wb') as fp:
+            #pickle.dump(columns, fp)
+        
 
         if cv2.waitKey(waittime)&0xFF == ord('q'):
             break

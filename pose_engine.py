@@ -56,7 +56,7 @@ class Keypoint:
     def __repr__(self):
         return 'Keypoint(<{}>, {}, {})'.format(KEYPOINTS[self.k], self.yx, self.score)
 
-    def getListofkyx():
+    def getListofkyx(self):
         return [self.k, self.yx, self.score]
 
 

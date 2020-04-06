@@ -118,7 +118,7 @@ if __name__ == '__main__':
     file = open('data.txt', 'w')
     file.close()
 
-    with open('saved_model.txt', 'rb') as f:
+    with open('saved_model/model.txt', 'rb') as f:
         clf = pickle.load(f)
 
     while True:

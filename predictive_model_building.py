@@ -34,8 +34,11 @@ def model_building(ds):
     RFC = RandomForestClassifier(n_estimators=100, criterion='entropy', random_state=0)
     RFC.fit(X_train, y_train)
 
-    os.mkdir('saved_model')
-    with open('saved_model/model.txt', 'wb') as f:
+    if path.isdir('saved_model'):
+        pass
+    else:
+        os.mkdir('saved_model')
+    with open('saved_model/model.pickle', 'wb') as f:
         pickle.dump(RFC, f)
 
 
@@ -231,18 +234,5 @@ if __name__ == "__main__":
     ds = preprocess(target, non_target)
     model_building(ds)
 
-    if path.isfile('saved_model/model.txt'):
+    if path.isfile('saved_model/model.pickle'):
         print('model is saved.')
-
-
-
-
-
-
-
-
-
-
-
-
-

@@ -121,6 +121,7 @@ if __name__ == '__main__':
     with open('saved_model/model.pickle', 'rb') as f:
         clf = pickle.load(f)
 
+
     while True:
         t1 = time.perf_counter()
 

@@ -8,10 +8,10 @@ import os
 
 def preprocess(positive, negative):
 
-    non_target_ds = pd.read_csv(negative).assign(target=negative.split('.').split('/')[1])
+    non_target_ds = pd.read_csv(negative).assign(target=negative.split('.')[0].split('/')[1])
     target_ds = []
     for i, ds in enumerate(positive):
-        target_ds.append(pd.read_csv(ds).assign(target=ds.split('.').split('/')[1]))
+        target_ds.append(pd.read_csv(ds).assign(target=ds.split('.')[0].split('/')[1]))
 
     # target_ds = pd.read_csv('raise_up_both_hands_data.csv').assign(target=1)
     # non_target_ds = pd.read_csv('random_pose_data.csv').assign(target=0)

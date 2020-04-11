@@ -8,7 +8,7 @@ from edgetpu.basic import edgetpu_utils
 from pose_engine import PoseEngine
 import pickle
 
-from data_transformation import preprocess
+from ex2_posture_control_data_preprocessing import preprocess
 import sensestorm
 from sensestorm import moveMotor
 

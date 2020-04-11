@@ -7,6 +7,8 @@ from time import sleep
 from edgetpu.basic import edgetpu_utils
 from pose_engine import PoseEngine
 import pickle
+from os import path
+import os
 
 lastresults = None
 processes = []

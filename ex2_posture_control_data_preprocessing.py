@@ -38,7 +38,7 @@ def preprocess(data):
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description="Transfer data to training/testing dataset")
-    parser.add_argument("data",  help="data")
+    parser.add_argument("--data",  help="data")
 
     args = parser.parse_args()
     data_name = args.data.split('.')[0].split('/')[1]

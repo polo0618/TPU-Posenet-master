@@ -5,8 +5,7 @@ import argparse
 
 
 def open_data(data):
-    #with open('data.txt', 'rb') as fp:
-    #     l = pickle.load(fp)
+
     l = []
     with open(data, 'rb') as f:
         while 1:
@@ -14,9 +13,6 @@ def open_data(data):
                 l.append(pickle.load(f))
             except EOFError:
                 break
-    #len(l)  # 33
-    # l[0] #17
-    # l[1][0] #3
     return l
 
 

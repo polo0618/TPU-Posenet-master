@@ -76,12 +76,14 @@ def overlay_on_image(frames, result, model_width, model_height):
 if __name__ == '__main__':
 
     parser = argparse.ArgumentParser()
+    parser.add_argument('--outputname', default='data', help='Name of the pose')
     parser.add_argument("--model", default="models/posenet_mobilenet_v1_075_481_641_quant_decoder_edgetpu.tflite", help="Path of the detection model.")
     parser.add_argument("--usbcamno", type=int, default=0, help="USB Camera number.")
     parser.add_argument('--videofile', default="", help='Path to input video file. (Default="")')
     parser.add_argument('--vidfps', type=int, default=30, help='FPS of Video. (Default=30)')
     args = parser.parse_args()
 
+    pose_name = args.outputname
     model     = args.model
     usbcamno  = args.usbcamno
     vidfps    = args.vidfps
@@ -108,11 +110,18 @@ if __name__ == '__main__':
         window_name = "Movie File"
 
     cv2.namedWindow(window_name, cv2.WINDOW_AUTOSIZE)
-    
-    
+
+
+    # clear data
     file = open('data.txt', 'w')
     file.close()
-    
+
+    # make data directory for saving the data
+    if path.isdir('data'):
+        pass
+    else:
+        os.mkdir('data')
+
     while True:
         t1 = time.perf_counter()
 
@@ -128,31 +137,16 @@ if __name__ == '__main__':
         res, inference_time = engine.DetectPosesInImage(prepimg)
 
 
-
-
-
-
-
         if res:
-            #print(1) detected
-            
-            
+
             for i in res:
                 rows = []
-                #print('type')
-                #print(type(i.keypoints)) #<class 'dict'>
                 for j in i.keypoints:
                     print(i.keypoints[j].getListofkyx())
                     rows.append(i.keypoints[j].getListofkyx())
-                    #print(type(i.keypoints[j].getListofkyx()))
-                #print('shape')
-                #print(len(i.keypoints)) #17
-                #columns.append(rows)
-            with open('data.txt', 'ab') as fp:
+            with open('data/{}.txt'.format(pose_name), 'ab') as fp:
                 pickle.dump(rows, fp)
-                
-            
-            
+
             detectframecount += 1
             imdraw = overlay_on_image(color_image, res, model_width, model_height)
         else:
@@ -160,12 +154,7 @@ if __name__ == '__main__':
             imdraw = color_image
 
         cv2.imshow(window_name, imdraw)
-        
 
-        #print(len(columns))
-        #with open('data.txt', 'wb') as fp:
-            #pickle.dump(columns, fp)
-        
 
         if cv2.waitKey(waittime)&0xFF == ord('q'):
             break

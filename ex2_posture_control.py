@@ -147,7 +147,6 @@ if __name__ == '__main__':
                 #print('type')
                 #print(type(i.keypoints)) #<class 'dict'>
                 for j in i.keypoints:
-                    print(i.keypoints[j].getListofkyx())
                     rows.append(i.keypoints[j].getListofkyx())
 
                 prediction = clf.predict(preprocess([rows]))

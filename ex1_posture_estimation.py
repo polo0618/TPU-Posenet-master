@@ -68,7 +68,7 @@ def overlay_on_image(frames, result, model_width, model_height):
 
     cv2.putText(img_cp, fps,       (model_width-170,15), cv2.FONT_HERSHEY_SIMPLEX, 0.5, (38,0,255), 1, cv2.LINE_AA)
     cv2.putText(img_cp, detectfps, (model_width-170,30), cv2.FONT_HERSHEY_SIMPLEX, 0.5, (38,0,255), 1, cv2.LINE_AA)
-    cv2.putText(im_cp, 'Christmas', (10,450), font, 3, (0, 255, 0), 2, cv2.LINE_AA)
+    cv2.putText(img_cp, 'Christmas', (10,450), font, 3, (0, 255, 0), 2, cv2.LINE_AA)
 
     return img_cp
 

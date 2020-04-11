@@ -16,11 +16,10 @@ def preprocess(positive, negative):
     # target_ds = pd.read_csv('raise_up_both_hands_data.csv').assign(target=1)
     # non_target_ds = pd.read_csv('random_pose_data.csv').assign(target=0)
 
-    target_ds = pd.concat(target_ds)
+    target_ds = pd.concat(target_ds, ignore_index=True)
     ds = target_ds.append(non_target_ds, ignore_index=True)
 
-    ds.to_csv('result.csv')
-
+    ds.to_csv('r.csv')
     return ds
 
 

@@ -157,7 +157,7 @@ if __name__ == '__main__':
                 predition = clf.predict(preprocess([rows]))
                 if predition == 1:
                     moveMotor('A', 50, 0.2)
-                else if predition == 2:
+                elif predition == 2:
                     moveMotor('B', 50, 0.2)
 
                 cv2.putText(img_cp, 'detected {}'.format(predition), (10,450), cv2.FONT_HERSHEY_SIMPLEX, 3, (0, 255, 0), 2, cv2.LINE_AA)

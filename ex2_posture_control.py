@@ -150,9 +150,9 @@ if __name__ == '__main__':
                     rows.append(i.keypoints[j].getListofkyx())
 
                 prediction = clf.predict(preprocess([rows]))
-                if prediction == 1:
+                if prediction == 'open_arm':
                     moveMotor('A', 50, 0.2)
-                elif prediction == 2:
+                elif prediction == 'cross_hand':
                     moveMotor('B', 50, 0.2)
 
             detectframecount += 1

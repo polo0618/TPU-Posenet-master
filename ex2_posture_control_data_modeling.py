@@ -52,7 +52,7 @@ if __name__ == "__main__":
     args = parser.parse_args()
 
     target, non_target = args.positive, args.negative
-    target = pd.concat(target)
+
     ds = preprocess(target, non_target)
     model_building(ds)
 

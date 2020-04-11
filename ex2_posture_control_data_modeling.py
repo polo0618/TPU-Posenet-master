@@ -19,6 +19,8 @@ def preprocess(positive, negative):
     target_ds = pd.concat(target_ds)
     ds = target_ds.append(non_target_ds, ignore_index=True)
 
+    ds.to_csv('result.csv')
+
     return ds
 
 

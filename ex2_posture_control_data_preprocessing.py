@@ -44,11 +44,6 @@ if __name__ == "__main__":
     args = parser.parse_args()
     data = preprocess(open_data(args.data))
 
-    data.to_csv('{}_data.csv'.format(args.target), index=False)
+    data.to_csv('data/{}_data.csv'.format(args.target), index=False)
     # data.to_csv('training_data.csv') if args.purpose == 'training' else data.to_csv('testing_data.csv')
-    print('{} data saved.'.format(args.target))
-
-
-    data = open_data('random_pose.txt')
-
-    see = preprocess([data[0]])
+    print('data/{} data saved.'.format(args.target))

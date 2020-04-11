@@ -61,7 +61,7 @@ def draw_pose(img, pose, threshold=0.2):
         img = cv2.line(img, (ax, ay), (bx, by), (0, 255, 255), 2)
 
 
-def overlay_on_image(frames, result, model_width, model_height):
+def overlay_on_image(frames, result, model_width, model_height, prediction):
 
     color_image = frames
 
@@ -74,6 +74,7 @@ def overlay_on_image(frames, result, model_width, model_height):
 
     cv2.putText(img_cp, fps,       (model_width-170,15), cv2.FONT_HERSHEY_SIMPLEX, 0.5, (38,0,255), 1, cv2.LINE_AA)
     cv2.putText(img_cp, detectfps, (model_width-170,30), cv2.FONT_HERSHEY_SIMPLEX, 0.5, (38,0,255), 1, cv2.LINE_AA)
+    cv2.putText(img_cp, '{} is detected'.format(predition), (10,450), cv2.FONT_HERSHEY_SIMPLEX, 3, (0, 255, 0), 2, cv2.LINE_AA)
 
     return img_cp
 
@@ -148,22 +149,15 @@ if __name__ == '__main__':
                 for j in i.keypoints:
                     print(i.keypoints[j].getListofkyx())
                     rows.append(i.keypoints[j].getListofkyx())
-                    #print(type(i.keypoints[j].getListofkyx()))
-                #print('shape')
-                #print(len(i.keypoints)) #17
-                #columns.append(rows)
-            # with open('data.txt', 'ab') as fp:
-            #     pickle.dump(rows, fp)
+
                 predition = clf.predict(preprocess([rows]))
                 if predition == 1:
                     moveMotor('A', 50, 0.2)
                 elif predition == 2:
                     moveMotor('B', 50, 0.2)
 
-                cv2.putText(img_cp, 'detected {}'.format(predition), (10,450), cv2.FONT_HERSHEY_SIMPLEX, 3, (0, 255, 0), 2, cv2.LINE_AA)
-
             detectframecount += 1
-            imdraw = overlay_on_image(color_image, res, model_width, model_height)
+            imdraw = overlay_on_image(color_image, res, model_width, model_height, prediction)
         else:
             #print(0) not detected
             imdraw = color_image

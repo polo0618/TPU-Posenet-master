@@ -47,11 +47,12 @@ def model_building(ds):
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description="Predictive model building for classifying customised posture")
-    parser.add_argument("--positive", help="Path of target dataset")
+    parser.add_argument("--positive", nargs='+', help="Path(s) of target dataset", required=True)
     parser.add_argument("--negative",  help="Path of non-target dataset")
     args = parser.parse_args()
 
     target, non_target = args.positive, args.negative
+    target = pd.concat(target)
     ds = preprocess(target, non_target)
     model_building(ds)
 

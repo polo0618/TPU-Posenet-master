@@ -41,7 +41,7 @@ if __name__ == "__main__":
     parser.add_argument("data",  help="data")
 
     args = parser.parse_args()
-    data_name = args.data.split('.')[0]
+    data_name = args.data.split('.')[0].split('/')[1]
     data = preprocess(open_data(args.data))
 
     data.to_csv('data/{}_data.csv'.format(data_name), index=False)

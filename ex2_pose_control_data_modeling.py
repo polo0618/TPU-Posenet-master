@@ -28,14 +28,10 @@ def model_building(ds):
     X = ds.iloc[:, 0:51].values
     y = ds.iloc[:, 51].values
 
-    # Splitting the dataset into the Training set and Test set
-    from sklearn.model_selection import train_test_split
-    X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=2)
-
     # Fitting Random Forest Classification to the Training set
     from sklearn.ensemble import RandomForestClassifier
     RFC = RandomForestClassifier(n_estimators=100, criterion='entropy', random_state=0)
-    RFC.fit(X_train, y_train)
+    RFC.fit(X, y)
 
     if path.isdir('saved_model'):
         pass

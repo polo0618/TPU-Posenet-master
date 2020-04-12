@@ -9,7 +9,7 @@
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
   <component name="FileEditorManager">
-    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300" />
+    <leaf />
   </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
@@ -43,7 +43,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -55,6 +54,7 @@
           <select />
         </subPane>
       </pane>
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -93,19 +93,20 @@
       <workItem from="1586163437505" duration="1004000" />
       <workItem from="1586513674526" duration="705000" />
       <workItem from="1586604355481" duration="891000" />
+      <workItem from="1586621280340" duration="217000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="39733000" />
+    <option name="totallyTimeSpent" value="39950000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="0" width="1920" height="1080" extended-state="0" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" weight="0.1970181" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.1970181" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
-      <window_info x="612" y="334" width="429" height="423" id="SciView" order="3" sideWeight="0.79358715" visible="true" weight="0.31203407" />
+      <window_info x="612" y="334" width="429" height="423" id="SciView" order="3" sideWeight="0.79358715" weight="0.30777422" />
       <window_info active="true" x="0" y="0" width="310" height="700" id="Documentation" order="4" sideWeight="0.20641282" visible="true" weight="0.31688127" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" />
@@ -113,7 +114,7 @@
       <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
-      <window_info active="true" anchor="bottom" id="Python Console" order="6" sideWeight="0.8277571" visible="true" weight="0.28613862" />
+      <window_info anchor="bottom" id="Python Console" order="6" sideWeight="0.8277571" visible="true" weight="0.27326733" />
       <window_info anchor="bottom" id="TODO" order="7" />
       <window_info anchor="bottom" id="Docker" order="8" show_stripe_button="false" />
       <window_info anchor="bottom" id="Version Control" order="9" weight="0.32961586" />
@@ -135,103 +136,17 @@
     <entry file="file://$PROJECT_DIR$/pose_engine.py">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/pose_picam_multi_tpu.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <folding>
-            <element signature="e#0#15#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/pose_picam_single_tpu.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <folding>
-            <element signature="e#0#15#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/ssd-deeplab-posenet.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <folding>
-            <element signature="e#0#10#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/pose_picam_multi_tpu.py" />
+    <entry file="file://$PROJECT_DIR$/pose_picam_single_tpu.py" />
+    <entry file="file://$PROJECT_DIR$/ssd-deeplab-posenet.py" />
     <entry file="file://$PROJECT_DIR$/try.py" />
     <entry file="file://$PROJECT_DIR$/data_modeling.py" />
-    <entry file="file://$PROJECT_DIR$/pose_camera_multi_tpu.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-3625">
-          <folding>
-            <element signature="e#0#15#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/pose_camera_single_tpu.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="3146">
-          <caret line="151" column="37" selection-start-line="151" selection-start-column="37" selection-end-line="151" selection-end-column="37" />
-          <folding>
-            <element signature="e#0#15#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/data_transformation.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="652">
-          <caret line="57" column="31" selection-start-line="57" selection-start-column="31" selection-end-line="57" selection-end-column="31" />
-          <folding>
-            <element signature="e#0#18#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/predictive_model_building.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="652">
-          <caret line="47" column="4" selection-start-line="47" selection-start-column="4" selection-end-line="47" selection-end-column="4" />
-          <folding>
-            <element signature="e#0#18#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/pose_camera_single_tpu_with_prediction.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2420">
-          <caret line="122" selection-start-line="122" selection-end-line="122" />
-          <folding>
-            <element signature="e#0#15#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/testargs.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="129">
-          <caret line="12" column="27" selection-start-line="12" selection-start-column="27" selection-end-line="12" selection-end-column="27" />
-          <folding>
-            <element signature="e#0#18#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/testargs 下午6.06.17.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="432">
-          <caret line="54" selection-start-line="54" selection-end-line="54" selection-end-column="18" />
-          <folding>
-            <element signature="e#0#18#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/pose_camera_multi_tpu.py" />
+    <entry file="file://$PROJECT_DIR$/pose_camera_single_tpu.py" />
+    <entry file="file://$PROJECT_DIR$/data_transformation.py" />
+    <entry file="file://$PROJECT_DIR$/predictive_model_building.py" />
+    <entry file="file://$PROJECT_DIR$/pose_camera_single_tpu_with_prediction.py" />
+    <entry file="file://$PROJECT_DIR$/testargs.py" />
+    <entry file="file://$PROJECT_DIR$/testargs 下午6.06.17.py" />
   </component>
 </project>

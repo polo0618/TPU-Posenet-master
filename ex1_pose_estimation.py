@@ -122,6 +122,9 @@ if __name__ == '__main__':
         res, inference_time = engine.DetectPosesInImage(prepimg)
 
         if res:
+            for i in res:
+                for j in i.keypoints:
+                    print(i.keypoints[j].getListofkyx())
             detectframecount += 1
             imdraw = overlay_on_image(color_image, res, model_width, model_height)
         else:

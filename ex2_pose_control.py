@@ -50,12 +50,15 @@ EDGES = (
 def draw_pose(img, pose, threshold=0.2):
     xys = {}
     for label, keypoint in pose.keypoints.items():
-        if keypoint.score < threshold: continue
+        if keypoint.score < threshold:
+            continue
         xys[label] = (int(keypoint.yx[1]), int(keypoint.yx[0]))
-        img = cv2.circle(img, (int(keypoint.yx[1]), int(keypoint.yx[0])), 5, (0, 255, 0), -1)
+        img = cv2.circle(img, (int(keypoint.yx[1]), int(
+            keypoint.yx[0])), 5, (0, 255, 0), -1)
 
     for a, b in EDGES:
-        if a not in xys or b not in xys: continue
+        if a not in xys or b not in xys:
+            continue
         ax, ay = xys[a]
         bx, by = xys[b]
         img = cv2.line(img, (ax, ay), (bx, by), (0, 255, 255), 2)
@@ -72,32 +75,41 @@ def overlay_on_image(frames, result, model_width, model_height, prediction):
     for pose in result:
         draw_pose(img_cp, pose)
 
-    cv2.putText(img_cp, fps,       (model_width-170,15), cv2.FONT_HERSHEY_SIMPLEX, 0.5, (38,0,255), 1, cv2.LINE_AA)
-    cv2.putText(img_cp, detectfps, (model_width-170,30), cv2.FONT_HERSHEY_SIMPLEX, 0.5, (38,0,255), 1, cv2.LINE_AA)
-    cv2.putText(img_cp, '{} is detected'.format(prediction), (10,450), cv2.FONT_HERSHEY_SIMPLEX, 1, (0, 255, 0), 2, cv2.LINE_AA)
+    cv2.putText(img_cp, fps,       (model_width-170, 15),
+                cv2.FONT_HERSHEY_SIMPLEX, 0.5, (38, 0, 255), 1, cv2.LINE_AA)
+    cv2.putText(img_cp, detectfps, (model_width-170, 30),
+                cv2.FONT_HERSHEY_SIMPLEX, 0.5, (38, 0, 255), 1, cv2.LINE_AA)
+    cv2.putText(img_cp, '{} is detected'.format(prediction), (10, 450),
+                cv2.FONT_HERSHEY_SIMPLEX, 1, (0, 255, 0), 2, cv2.LINE_AA)
 
     return img_cp
+
 
 if __name__ == '__main__':
 
     parser = argparse.ArgumentParser()
-    parser.add_argument("--model", default="models/posenet_mobilenet_v1_075_481_641_quant_decoder_edgetpu.tflite", help="Path of the detection model.")
-    parser.add_argument("--usbcamno", type=int, default=0, help="USB Camera number.")
-    parser.add_argument('--videofile', default="", help='Path to input video file. (Default="")')
-    parser.add_argument('--vidfps', type=int, default=30, help='FPS of Video. (Default=30)')
+    parser.add_argument("--model", default="models/posenet_mobilenet_v1_075_481_641_quant_decoder_edgetpu.tflite",
+                        help="Path of the detection model.")
+    parser.add_argument("--usbcamno", type=int, default=0,
+                        help="USB Camera number.")
+    parser.add_argument('--videofile', default="",
+                        help='Path to input video file. (Default="")')
+    parser.add_argument('--vidfps', type=int, default=30,
+                        help='FPS of Video. (Default=30)')
     args = parser.parse_args()
 
-    model     = args.model
-    usbcamno  = args.usbcamno
-    vidfps    = args.vidfps
+    model = args.model
+    usbcamno = args.usbcamno
+    vidfps = args.vidfps
     videofile = args.videofile
 
-    camera_width  = 320
+    camera_width = 320
     camera_height = 240
-    model_width   = 640
-    model_height  = 480
+    model_width = 640
+    model_height = 480
 
-    devices = edgetpu_utils.ListEdgeTpuPaths(edgetpu_utils.EDGE_TPU_STATE_UNASSIGNED)
+    devices = edgetpu_utils.ListEdgeTpuPaths(
+        edgetpu_utils.EDGE_TPU_STATE_UNASSIGNED)
     engine = PoseEngine(model, devices[0])
 
     if videofile == "":
@@ -114,14 +126,12 @@ if __name__ == '__main__':
 
     cv2.namedWindow(window_name, cv2.WINDOW_AUTOSIZE)
 
-
     # add to clear the old data
     file = open('data.txt', 'w')
     file.close()
 
     with open('saved_model/model.pickle', 'rb') as f:
         clf = pickle.load(f)
-
 
     while True:
         t1 = time.perf_counter()
@@ -137,15 +147,13 @@ if __name__ == '__main__':
         tinf = time.perf_counter()
         res, inference_time = engine.DetectPosesInImage(prepimg)
 
-
         if res:
-            #print(1) detected
-
+            # print(1) detected
 
             for i in res:
                 rows = []
-                #print('type')
-                #print(type(i.keypoints)) #<class 'dict'>
+                # print('type')
+                # print(type(i.keypoints)) #<class 'dict'>
                 for j in i.keypoints:
                     rows.append(i.keypoints[j].getListofkyx())
 
@@ -156,26 +164,25 @@ if __name__ == '__main__':
                     moveMotor('B', 50, 0.2)
 
             detectframecount += 1
-            imdraw = overlay_on_image(color_image, res, model_width, model_height, prediction)
+            imdraw = overlay_on_image(
+                color_image, res, model_width, model_height, prediction)
         else:
-            #print(0) not detected
+            # print(0) not detected
             imdraw = color_image
 
         cv2.imshow(window_name, imdraw)
 
+        # print(len(columns))
+        # with open('data.txt', 'wb') as fp:
+        # pickle.dump(columns, fp)
 
-        #print(len(columns))
-        #with open('data.txt', 'wb') as fp:
-            #pickle.dump(columns, fp)
-
-
-        if cv2.waitKey(waittime)&0xFF == ord('q'):
+        if cv2.waitKey(waittime) & 0xFF == ord('q'):
             break
 
         # FPS calculation
         framecount += 1
         if framecount >= 15:
-            fps       = "(Playback) {:.1f} FPS".format(time1/15)
+            fps = "(Playback) {:.1f} FPS".format(time1/15)
             detectfps = "(Detection) {:.1f} FPS".format(detectframecount/time2)
             framecount = 0
             detectframecount = 0
@@ -185,3 +192,5 @@ if __name__ == '__main__':
         elapsedTime = t2-t1
         time1 += 1/elapsedTime
         time2 += elapsedTime
+
+# add some comments and push to branch for testing

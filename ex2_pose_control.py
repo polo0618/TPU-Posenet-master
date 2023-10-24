@@ -166,7 +166,10 @@ if __name__ == '__main__':
             detectframecount += 1
             imdraw = overlay_on_image(
                 color_image, res, model_width, model_height, prediction)
+            imdraw = overlay_on_image(
+                color_image, res, model_width, model_height, prediction)
         else:
+            # print(0) not detected
             # print(0) not detected
             imdraw = color_image
 
@@ -175,13 +178,18 @@ if __name__ == '__main__':
         # print(len(columns))
         # with open('data.txt', 'wb') as fp:
         # pickle.dump(columns, fp)
+        # print(len(columns))
+        # with open('data.txt', 'wb') as fp:
+        # pickle.dump(columns, fp)
 
+        if cv2.waitKey(waittime) & 0xFF == ord('q'):
         if cv2.waitKey(waittime) & 0xFF == ord('q'):
             break
 
         # FPS calculation
         framecount += 1
         if framecount >= 15:
+            fps = "(Playback) {:.1f} FPS".format(time1/15)
             fps = "(Playback) {:.1f} FPS".format(time1/15)
             detectfps = "(Detection) {:.1f} FPS".format(detectframecount/time2)
             framecount = 0
@@ -193,4 +201,4 @@ if __name__ == '__main__':
         time1 += 1/elapsedTime
         time2 += elapsedTime
 
-# add some comments and push to branch for testing
+# now edit the master branch
